@@ -10,7 +10,7 @@ To use this module, you need to have Node.js installed. You can install the CLI 
 deno install -A ./mod.ts
 ```
 
-> Alternatively you can donwload the binary in the releases section of this repository and use it without installing deno.
+Alternatively you can donwload the binary in the [releases section of this repository](https://github.com/danimrangelb/proxy/releases) and use it without installing deno.
 
 ## Usage
 
@@ -45,21 +45,21 @@ Examples of the `proxyUrl` property:
 
 ```json
 "proxyUrl": [
-  { "url": "https://example.com", "endpoint": "/api" },
-  { "url": "https://example2.com", "endpoint": "/api2" }
+  { "url": "https://example.com/api", "endpoint": "/api" },
+  { "url": "https://example2.com/api", "endpoint": "/api2" }
 ]
 ```
 
 - Single URL with endpoint:
 
 ```json
-"proxyUrl": { "url": "https://example.com", "endpoint": "/api" }
+"proxyUrl": { "url": "https://example.com/api", "endpoint": "/api" }
 ```
 
 - Single URL without endpoint (defaults to "/"):
 
 ```json
-"proxyUrl": "https://example.com"
+"proxyUrl": "https://example.com/api"
 ```
 
 ### Patch File
