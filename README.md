@@ -119,7 +119,6 @@ The patch file (`proxy.patch.json` or `proxy.[scope].patch.json`) should also be
       "name": "New User"
     }
   }
-}
 ```
 
 - The keys represent the `routes` paths that need to be patched.
@@ -150,6 +149,7 @@ The patch file (`proxy.patch.json` or `proxy.[scope].patch.json`) should also be
 - Patching an entire object:
 
 ```json
+{
 "/api/user/1234": {
   "value": {
     "id": 3,
