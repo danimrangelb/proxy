@@ -1,5 +1,5 @@
 //@deno-types="npm:@types/express"
-import { Router } from "express";
+import { Router } from "npm:express";
 import { IContext, IProxyConfig } from "./types.ts";
 import { getConfigUrlType, handleRequest } from "./helpers.ts";
 

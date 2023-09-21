@@ -5,7 +5,7 @@ import axios, { AxiosError } from "npm:axios";
 //@deno-types="npm:@types/object-path"
 import objectPath from "npm:object-path";
 import { join } from "https://deno.land/std@0.202.0/path/mod.ts";
-import { green, red, yellow } from "colors";
+import { green, red, yellow } from "https://deno.land/std@0.202.0/fmt/colors.ts";
 
 export const getConfigUrlType = (config: IProxyConfig) => {
   if (Array.isArray(config.proxyUrl)) {

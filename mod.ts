@@ -1,15 +1,15 @@
 import { type IProxyConfig, IContext } from "./types.ts";
 //@deno-types="npm:@types/express"
-import express, { json, urlencoded, RequestHandler } from "express";
+import express, { json, urlencoded, RequestHandler } from "npm:express";
 //@deno-types="npm:@types/cors"
-import cors from "cors";
+import cors from "npm:cors";
 //@deno-types="npm:@types/morgan"
-import morgan from "morgan";
+import morgan from "npm:morgan";
 
-import { green, yellow } from "colors";
+import { green, yellow } from "https://deno.land/std@0.202.0/fmt/colors.ts";
 import { logRegisteredRoutes, updateContext, watch } from "./helpers.ts";
 import { routerFactory } from "./router.ts";
-import "dotenv";
+import "https://deno.land/std@0.202.0/dotenv/load.ts";
 
 // Const
 

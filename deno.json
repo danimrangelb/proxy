@@ -3,13 +3,6 @@
         "dev": "deno run -A ./mod.ts",
         "compile": "deno compile -A --output ./dist/blind-proxy ./mod.ts"
     },
-    "imports": {
-        "express": "npm:express",
-        "colors": "https://deno.land/std@0.202.0/fmt/colors.ts",
-        "morgan": "npm:morgan",
-        "cors": "npm:cors",
-        "dotenv": "https://deno.land/std@0.202.0/dotenv/load.ts"
-    },
     "compilerOptions": {
         "types": [
             "npm:@types/express"
