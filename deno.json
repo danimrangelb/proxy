@@ -1,0 +1,6 @@
+{
+    "tasks": {
+        "dev": "deno run --watch -A ./mod.ts",
+        "compile": "deno compile -A --output ./dist/blind-proxy ./mod.ts"
+    }
+}
