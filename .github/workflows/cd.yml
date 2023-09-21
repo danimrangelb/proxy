@@ -45,17 +45,6 @@ jobs:
           asset_name: proxy-macos.zip
           overwrite: true
 
-      - name: Release MacOS binary
-        if: runner.os == 'MacOS'
-        uses: svenstaro/upload-release-action@v2
-        with:
-          repo_name: danimrangelb/proxy
-          repo_token: ${{ secrets.TOKEN }}
-          file: dist/proxy-darwin
-          tag: ${{ github.event.release.tag_name }}
-          asset_name: proxy-darwin
-          overwrite: true
-
       - name: Rename Linux binary
         if: runner.os == 'Linux'
         run: mv dist/proxy dist/proxy-linux
@@ -78,17 +67,6 @@ jobs:
           asset_name: proxy-linux.zip
           overwrite: true
 
-      - name: Release Linux binary
-        if: runner.os == 'Linux'
-        uses: svenstaro/upload-release-action@v2
-        with:
-          repo_name: danimrangelb/proxy
-          repo_token: ${{ secrets.TOKEN }}
-          file: dist/proxy-linux
-          tag: ${{ github.event.release.tag_name }}
-          asset_name: proxy-linux
-          overwrite: true
-
       - name: Rename Windows binary
         if: runner.os == 'Windows'
         run: mv dist/proxy.exe dist/proxy-windows.exe
@@ -109,15 +87,4 @@ jobs:
           file: proxy.zip
           tag: ${{ github.event.release.tag_name }}
           asset_name: proxy-windows.zip
-          overwrite: true
-
-      - name: Release Windows binary
-        if: runner.os == 'Windows'
-        uses: svenstaro/upload-release-action@v2
-        with:
-          repo_name: danimrangelb/proxy
-          repo_token: ${{ secrets.TOKEN }}
-          file: dist/proxy-windows.exe
-          tag: ${{ github.event.release.tag_name }}
-          asset_name: proxy-windows.exe
           overwrite: true
