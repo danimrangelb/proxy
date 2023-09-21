@@ -4,13 +4,25 @@ This module is a CLI (Command Line Interface) tool that allows you to configure 
 
 ## Installation
 
-To use this module, you need to have Node.js installed. You can install the CLI globally using deno:
+To use this module from src or unstable version, you need to have deno installed. You can install or the CLI globally using:
 
 ```shell
-deno install -A https://raw.githubusercontent.com/danimrangelb/proxy/main/mod.ts
+deno install -A -n proxy https://raw.githubusercontent.com/danimrangelb/proxy/main/mod.ts
+
+#or
+
+deno run -A https://raw.githubusercontent.com/danimrangelb/proxy/main/mod.ts
 ```
 
-Alternatively you can donwload the binary in the [releases section of this repository](https://github.com/danimrangelb/proxy/releases) and use it without installing deno.
+Also you can install the CLI running the supported install command on your OS terminal.
+
+| Platform |	Command                                               |
+|----------|--------------------------------------------------------|
+| Windows  |	`iwr instl.sh/danimrangelb/proxy/windows \| iex`      |
+| Linux    |	`curl -sSL instl.sh/danimrangelb/proxy/linux \| bash` |
+| macOS    | 	`curl -sSL instl.sh/danimrangelb/proxy/macos \| bash` |
+
+Alternatively you can donwload the binary in the [releases section of this repository](https://github.com/danimrangelb/proxy/releases) and use it without installing it.
 
 ## Usage
 
