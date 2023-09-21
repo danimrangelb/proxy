@@ -1,12 +1,10 @@
 name: Release libs
 
 on:
-  workflow_dispatch:
+  push:
     branches: [main]
-    inputs:
-      version:
-        description: "Version"
-        required: true
+    tags:
+      - "*"
 
 jobs:
   build:
@@ -42,9 +40,10 @@ jobs:
         if: runner.os == 'MacOS'
         uses: svenstaro/upload-release-action@v2
         with:
+          repo_name: danimrangelb/proxy
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: proxy.zip
-          tag: ${{ github.event.inputs.version }}
+          tag: ${{ github.ref }}
           asset_name: proxy-macos.zip
           overwrite: true
 
@@ -63,9 +62,10 @@ jobs:
         if: runner.os == 'Linux'
         uses: svenstaro/upload-release-action@v2
         with:
+          repo_name: danimrangelb/proxy
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: proxy.zip
-          tag: ${{ github.event.inputs.version }}
+          tag: ${{ github.ref }}
           asset_name: proxy-linux.zip
           overwrite: true
 
@@ -84,8 +84,9 @@ jobs:
         if: runner.os == 'Windows'
         uses: svenstaro/upload-release-action@v2
         with:
+          repo_name: danimrangelb/proxy
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: proxy.zip
-          tag: ${{ github.event.inputs.version }}
+          tag: ${{ github.ref }}
           asset_name: proxy-windows.zip
           overwrite: true
