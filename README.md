@@ -4,7 +4,7 @@ This module is a CLI (Command Line Interface) tool that allows you to configure 
 
 ## Installation
 
-To use this module from src or unstable version, you need to have deno installed. You can install or the CLI globally using:
+To use this module from src or unstable version, you need to have deno installed. You can install or run the CLI globally using:
 
 ```shell
 deno install -A -n proxy https://raw.githubusercontent.com/danimrangelb/proxy/main/mod.ts
