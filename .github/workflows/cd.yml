@@ -1,10 +1,8 @@
 name: Release libs
 
 on:
-  push:
-    branches: [main]
-    tags:
-      - "*"
+  release:
+    types: [published]
 
 jobs:
   build:
@@ -25,7 +23,7 @@ jobs:
       - name: Build binaries
         run: deno compile -A --output dist/proxy ./mod.ts
 
-      - name: Rename MacOS Runtimes
+      - name: Rename MacOS binary
         if: runner.os == 'MacOS'
         run: mv dist/proxy dist/proxy-darwin
 
