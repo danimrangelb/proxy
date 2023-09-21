@@ -66,10 +66,9 @@ Examples of the `proxyUrl` property:
 
 The patch file (`proxy.patch.json` or `proxy.[scope].patch.json`) should also be in JSON format and located in the same folder as the CLI executable. It should have the following structure:
 
+- Updating an entre array inside an object
 ```json
 {
-
-  // Updating an entre array inside an object
 
   "/api/data": {
     "path": "data.items",
@@ -85,8 +84,10 @@ The patch file (`proxy.patch.json` or `proxy.[scope].patch.json`) should also be
     ]
   },
 
-  // Updating an entire array at root
+```
+- Updating an entire array at root
 
+```json
   "/api2/users": {
     "value": [
       {
@@ -99,16 +100,18 @@ The patch file (`proxy.patch.json` or `proxy.[scope].patch.json`) should also be
       }
     ]
   },
-
-  // Updating a speciffic primitive value inside an object at an array postion
-
+```
+- Updating a speciffic primitive value inside an object at an array postion
+```json
   "/api/users": {
     "path": "0.name",
     "value": "Updated Name"
   },
 
-  // or updating the entire array position
+```
 
+- Or updating the entire array position
+```json
   "/api/users": {
     "path": "0",
     "value": {
@@ -152,6 +155,15 @@ The patch file (`proxy.patch.json` or `proxy.[scope].patch.json`) should also be
     "id": 3,
     "name": "Patched user"
   }
+}
+```
+
+- Patching a property inside an object
+
+```json
+"/api/user/1234": {
+  "path": "name",
+  "value": "Patched user"
 }
 ```
 
