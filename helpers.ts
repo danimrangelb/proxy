@@ -7,6 +7,12 @@ import objectPath from "npm:object-path";
 import { join } from "https://deno.land/std@0.202.0/path/mod.ts";
 import { green, red, yellow } from "https://deno.land/std@0.202.0/fmt/colors.ts";
 
+/**
+ * Returns the type of the config URL based on the given proxy configuration.
+ *
+ * @param {IProxyConfig} config - The proxy configuration object.
+ * @return {string} The type of the config URL.
+ */
 export const getConfigUrlType = (config: IProxyConfig) => {
   if (Array.isArray(config.proxyUrl)) {
     return "array";
@@ -17,6 +23,15 @@ export const getConfigUrlType = (config: IProxyConfig) => {
   }
 };
 
+/**
+ * Handles the incoming request and sends the appropriate response.
+ *
+ * @param {Request} req - the incoming request object
+ * @param {Response} res - the response object to send back
+ * @param {IContext} context - the context object containing additional information
+ * @param {string} proxyUrl - the URL to proxy the request to
+ * @return {Promise<void>} a promise that resolves when the request is handled
+ */
 export const handleRequest = async(
   req: Request,
   res: Response,
@@ -72,6 +87,14 @@ export const handleRequest = async(
   }
 };
 
+/**
+ * Updates the context with the configuration and patch file.
+ *
+ * @param {IContext} context - The context object to be updated.
+ * @param {string} [CONFIG_FILE_NAME="proxy.config.json"] - The name of the configuration file. Default is "proxy.config.json".
+ * @param {string} [PATCH_FILE_NAME="proxy.patch.json"] - The name of the patch file. Default is "proxy.patch.json".
+ * @param {IProxyConfig} defaultConfig - The default configuration object.
+ */
 export const updateContext = async (
   context: IContext,
   CONFIG_FILE_NAME = "proxy.config.json",
@@ -104,6 +127,12 @@ export const updateContext = async (
   }
 };
 
+/**
+ * Watches the current working directory for file changes and calls the provided callback function.
+ *
+ * @param {() => void | Promise<void>} callback - The callback function to be called when a file change is detected.
+ * @return {void | Promise<void>} - Returns void or a Promise that resolves to void.
+ */
 export const watch = async (callback: () => void | Promise<void>) => {
   const watcher = Deno.watchFs(join(Deno.cwd()));
   for await (const _ of watcher) {
@@ -111,6 +140,11 @@ export const watch = async (callback: () => void | Promise<void>) => {
  }
 }
 
+/**
+ * Logs the registered routes based on the provided context.
+ *
+ * @param {IContext} context - The context containing the configuration and other data.
+ */
 export const logRegisteredRoutes = (context: IContext) => {
   context.config.verbose &&
     Array.isArray(context.config.proxyUrl) &&

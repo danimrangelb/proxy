@@ -5,6 +5,12 @@ import { getConfigUrlType, handleRequest } from "./helpers.ts";
 
 const router = Router();
 
+/**
+ * Creates a router based on the given context.
+ *
+ * @param {IContext} context - The context object.
+ * @return {Router} The created router.
+ */
 export const routerFactory = (
     context: IContext
   ): Router => {
