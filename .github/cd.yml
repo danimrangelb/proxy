@@ -1,0 +1,91 @@
+name: Release libs
+
+on:
+  workflow_dispatch:
+    branches: [main]
+    inputs:
+      version:
+        description: "Version"
+        required: true
+
+jobs:
+  build:
+    name: Release libs
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Deno
+        uses: denoland/setup-deno@v1
+        with:
+        deno-version: v1.x
+
+      - name: Build binaries
+        run: deno compile -A --output dist/proxy ./mod.ts
+
+      - name: Rename MacOS Runtimes
+        if: runner.os == 'MacOS'
+        run: mv dist/proxy dist/proxy-darwin
+
+      - name: Zip MacOS binary
+        if: runner.os == 'MacOS'
+        uses: vimtor/action-zip@v1
+        with:
+          files: dist/proxy-darwin
+          dest: proxy.zip
+      
+      - name: Release MacOS binary
+        if: runner.os == 'MacOS'
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: proxy.zip
+          tag: ${{ github.event.inputs.version }}
+          asset_name: proxy-macos.zip
+          overwrite: true
+
+      - name: Rename Linux binary
+        if: runner.os == 'Linux'
+        run: mv dist/proxy dist/proxy-linux
+
+      - name: Zip Linux binary
+        if: runner.os == 'Linux'
+        uses: vimtor/action-zip@v1
+        with:
+          files: dist/proxy-linux 
+          dest: proxy.zip
+
+      - name: Release Linux binary
+        if: runner.os == 'Linux'
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: proxy.zip
+          tag: ${{ github.event.inputs.version }}
+          asset_name: proxy-linux.zip
+          overwrite: true
+
+      - name: Rename Windows binary
+         if: runner.os == 'Windows'
+         run: mv dist/proxy.exe dist/proxy-windows.exe
+
+      - name: Zip Windows binary
+         if: runner.os == 'Windows'
+         uses: vimtor/action-zip@v1
+         with:
+           files: dist/proxy-windows.exe
+           dest: proxy.zip
+
+      - name: Release Windows binary
+         if: runner.os == 'Windows'
+         uses: svenstaro/upload-release-action@v2
+         with:
+           repo_token: ${{ secrets.GITHUB_TOKEN }}
+           file: proxy.zip
+           tag: ${{ github.event.inputs.version }}
+           asset_name: proxy-windows.zip
+           overwrite: true

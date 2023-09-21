@@ -1,13 +1,13 @@
 # Module Documentation: Proxy Configuration CLI
 
-This module is a CLI (Command Line Interface) tool that allows you to configure a proxy server for forwarding requests to one or multiple URLs. It also provides the ability to patch the response data of the original request using configuration files. The configuration file should be named `proxy.config.json` or `proxy.[scope].config.json`, and the patch file should be named `proxy.patch.json` or `proxy.[scope].patch.json`. Both files should be located in the same folder as the CLI executable.
+This module is a CLI (Command Line Interface) tool that allows you to configure a proxy server for forwarding requests to one or multiple URLs. It also provides the ability to patch the response data of the original request using configuration files. The configuration file should be named `proxy.config.json` or `proxy.[scope].config.json`, and the patch file should be named `proxy.patch.json` or `proxy.[scope].patch.json`. Both files should be located in the same folder as the CLI executable or in the CWD if the CLI is beng used globally.
 
 ## Installation
 
 To use this module, you need to have Node.js installed. You can install the CLI globally using deno:
 
 ```shell
-deno install -A ./mod.ts
+deno install -A https://raw.githubusercontent.com/danimrangelb/proxy/main/mod.ts
 ```
 
 Alternatively you can donwload the binary in the [releases section of this repository](https://github.com/danimrangelb/proxy/releases) and use it without installing deno.
@@ -38,6 +38,7 @@ The configuration file (`proxy.config.json` or `proxy.[scope].config.json`) shou
 - `port`: The port number on which the proxy server will listen.
 - `proxyUrl`: An array of objects representing the URLs to which the requests will be forwarded. Each object should have a `url` property specifying the URL and an `endpoint` property specifying the endpoint. Alternatively, you can specify a single URL as a string and request will be forwarded to `/`, this is usefull if only one url is proxied.
 - `verbose` (optional): A boolean value indicating whether the proxy server should output verbose logs.
+- `watch`: (optional): A boolean values indicating whether the cli should reload the context of files located in the CWD.
 
 Examples of the `proxyUrl` property:
 

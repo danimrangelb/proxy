@@ -8,7 +8,8 @@ type ProxyUrlTypes = 'string' | 'array' | 'object'
 export interface IProxyConfig<T extends ProxyUrlTypes = 'string'> {
     port: number,
     proxyUrl: T extends 'string' ? string : T extends 'array' ? IProxyUrl[] : IProxyUrl,
-    verbose?: boolean
+    verbose?: boolean,
+    watch?: boolean
 }
 
 export interface IPatchFile {
@@ -17,4 +18,9 @@ export interface IPatchFile {
         value: unknown,
         method?: 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH' | 'OPTIONS'
     }
+}
+
+export interface IContext {
+    config: IProxyConfig
+    patchFile: IPatchFile
 }
