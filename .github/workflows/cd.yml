@@ -41,7 +41,7 @@ jobs:
           repo_name: danimrangelb/proxy
           repo_token: ${{ secrets.TOKEN }}
           file: proxy.zip
-          tag: ${{ github.ref }}
+          tag: ${{ github.event.release.tag_name }}
           asset_name: proxy-macos.zip
           overwrite: true
 
@@ -63,7 +63,7 @@ jobs:
           repo_name: danimrangelb/proxy
           repo_token: ${{ secrets.TOKEN }}
           file: proxy.zip
-          tag: ${{ github.ref }}
+          tag: ${{ github.event.release.tag_name }}
           asset_name: proxy-linux.zip
           overwrite: true
 
@@ -85,6 +85,6 @@ jobs:
           repo_name: danimrangelb/proxy
           repo_token: ${{ secrets.TOKEN }}
           file: proxy.zip
-          tag: ${{ github.ref }}
+          tag: ${{ github.event.release.tag_name }}
           asset_name: proxy-windows.zip
           overwrite: true
