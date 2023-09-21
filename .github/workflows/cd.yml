@@ -34,7 +34,7 @@ jobs:
           files: dist/proxy-darwin
           dest: proxy.zip
 
-      - name: Release MacOS binary
+      - name: Release MacOS binary Zip
         if: runner.os == 'MacOS'
         uses: svenstaro/upload-release-action@v2
         with:
@@ -43,6 +43,17 @@ jobs:
           file: proxy.zip
           tag: ${{ github.event.release.tag_name }}
           asset_name: proxy-macos.zip
+          overwrite: true
+
+      - name: Release MacOS binary
+        if: runner.os == 'MacOS'
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_name: danimrangelb/proxy
+          repo_token: ${{ secrets.TOKEN }}
+          file: dist/proxy-darwin
+          tag: ${{ github.event.release.tag_name }}
+          asset_name: proxy-darwin
           overwrite: true
 
       - name: Rename Linux binary
@@ -56,7 +67,7 @@ jobs:
           files: dist/proxy-linux
           dest: proxy.zip
 
-      - name: Release Linux binary
+      - name: Release Linux binary Zip
         if: runner.os == 'Linux'
         uses: svenstaro/upload-release-action@v2
         with:
@@ -65,6 +76,17 @@ jobs:
           file: proxy.zip
           tag: ${{ github.event.release.tag_name }}
           asset_name: proxy-linux.zip
+          overwrite: true
+
+      - name: Release Linux binary
+        if: runner.os == 'Windows'
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_name: danimrangelb/proxy
+          repo_token: ${{ secrets.TOKEN }}
+          file: dist/proxy-linux
+          tag: ${{ github.event.release.tag_name }}
+          asset_name: proxy-linux
           overwrite: true
 
       - name: Rename Windows binary
@@ -78,7 +100,7 @@ jobs:
           files: dist/proxy-windows.exe
           dest: proxy.zip
 
-      - name: Release Windows binary
+      - name: Release Windows binary Zip
         if: runner.os == 'Windows'
         uses: svenstaro/upload-release-action@v2
         with:
@@ -87,4 +109,15 @@ jobs:
           file: proxy.zip
           tag: ${{ github.event.release.tag_name }}
           asset_name: proxy-windows.zip
+          overwrite: true
+
+      - name: Release Windows binary
+        if: runner.os == 'Windows'
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_name: danimrangelb/proxy
+          repo_token: ${{ secrets.TOKEN }}
+          file: dist/proxy-windows.exe
+          tag: ${{ github.event.release.tag_name }}
+          asset_name: proxy-windows.exe
           overwrite: true
