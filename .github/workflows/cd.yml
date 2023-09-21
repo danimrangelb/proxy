@@ -79,7 +79,7 @@ jobs:
           overwrite: true
 
       - name: Release Linux binary
-        if: runner.os == 'Windows'
+        if: runner.os == 'Linux'
         uses: svenstaro/upload-release-action@v2
         with:
           repo_name: danimrangelb/proxy
