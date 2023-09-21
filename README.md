@@ -177,6 +177,24 @@ CONFIG_SCOPE=multiple
 
 This will set the configuration scope to `multiple`, and the CLI will look for the configuration and patch files with the `[scope]` suffix (e.g., `proxy.multiple.config.json` and `proxy.multiple.patch.json`).
 
+### Usage example
+
+```typescript
+import axios from 'npm:axios'
+
+// Set the base URL for your API
+const API_BASE_URL = 'http://localhost:8080' //before: 'https://api.example.com';
+
+// Create an instance of axios with the proxy configuration
+const axiosInstance = axios.create({
+  baseURL: API_BASE_URL,
+});
+
+// Make a request to the API
+const response = await axiosInstance.get('/api/data')
+console.log(data)
+```
+
 ## Conclusion
 
 The Proxy Configuration CLI provides a convenient way to configure a proxy server for forwarding requests and patching response data. By using the configuration and patch files in the specified format, you can easily define the proxy URLs and modify the response data according to your needs.
