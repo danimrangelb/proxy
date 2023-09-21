@@ -41,7 +41,7 @@ jobs:
         uses: svenstaro/upload-release-action@v2
         with:
           repo_name: danimrangelb/proxy
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          repo_token: ${{ secrets.TOKEN }}
           file: proxy.zip
           tag: ${{ github.ref }}
           asset_name: proxy-macos.zip
@@ -63,7 +63,7 @@ jobs:
         uses: svenstaro/upload-release-action@v2
         with:
           repo_name: danimrangelb/proxy
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          repo_token: ${{ secrets.TOKEN }}
           file: proxy.zip
           tag: ${{ github.ref }}
           asset_name: proxy-linux.zip
@@ -85,7 +85,7 @@ jobs:
         uses: svenstaro/upload-release-action@v2
         with:
           repo_name: danimrangelb/proxy
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          repo_token: ${{ secrets.TOKEN }}
           file: proxy.zip
           tag: ${{ github.ref }}
           asset_name: proxy-windows.zip
