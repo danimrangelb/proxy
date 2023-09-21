@@ -37,7 +37,7 @@ jobs:
         with:
           files: dist/proxy-darwin
           dest: proxy.zip
-      
+
       - name: Release MacOS binary
         if: runner.os == 'MacOS'
         uses: svenstaro/upload-release-action@v2
@@ -56,7 +56,7 @@ jobs:
         if: runner.os == 'Linux'
         uses: vimtor/action-zip@v1
         with:
-          files: dist/proxy-linux 
+          files: dist/proxy-linux
           dest: proxy.zip
 
       - name: Release Linux binary
@@ -70,22 +70,22 @@ jobs:
           overwrite: true
 
       - name: Rename Windows binary
-         if: runner.os == 'Windows'
-         run: mv dist/proxy.exe dist/proxy-windows.exe
+        if: runner.os == 'Windows'
+        run: mv dist/proxy.exe dist/proxy-windows.exe
 
       - name: Zip Windows binary
-         if: runner.os == 'Windows'
-         uses: vimtor/action-zip@v1
-         with:
-           files: dist/proxy-windows.exe
-           dest: proxy.zip
+        if: runner.os == 'Windows'
+        uses: vimtor/action-zip@v1
+        with:
+          files: dist/proxy-windows.exe
+          dest: proxy.zip
 
       - name: Release Windows binary
-         if: runner.os == 'Windows'
-         uses: svenstaro/upload-release-action@v2
-         with:
-           repo_token: ${{ secrets.GITHUB_TOKEN }}
-           file: proxy.zip
-           tag: ${{ github.event.inputs.version }}
-           asset_name: proxy-windows.zip
-           overwrite: true
+        if: runner.os == 'Windows'
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: proxy.zip
+          tag: ${{ github.event.inputs.version }}
+          asset_name: proxy-windows.zip
+          overwrite: true
