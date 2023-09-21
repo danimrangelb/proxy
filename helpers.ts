@@ -5,7 +5,7 @@ import axios, { AxiosError } from "npm:axios";
 //@deno-types="npm:@types/object-path"
 import objectPath from "npm:object-path";
 import { join } from "https://deno.land/std@0.202.0/path/mod.ts";
-import { green, red } from "colors";
+import { green, red, yellow } from "colors";
 
 export const getConfigUrlType = (config: IProxyConfig) => {
   if (Array.isArray(config.proxyUrl)) {
@@ -109,4 +109,26 @@ export const watch = async (callback: () => void | Promise<void>) => {
   for await (const _ of watcher) {
     callback();
  }
+}
+
+export const logRegisteredRoutes = (context: IContext) => {
+  context.config.verbose &&
+    Array.isArray(context.config.proxyUrl) &&
+    console.info(
+      `Registered endpoints: ${yellow(
+        (context.config as unknown as IProxyConfig<"array">).proxyUrl
+          .map((proxyUrl) => proxyUrl.endpoint)
+          .join(", ")
+      )} `
+    );
+  context.config.verbose &&
+    typeof context.config.proxyUrl === "string" &&
+    console.info(`Registered endpoint: ${yellow("/")}`);
+  context.config.verbose &&
+    getConfigUrlType(context.config) === "object" &&
+    console.info(
+      `Registered endpoint: ${yellow(
+        (context.config as unknown as IProxyConfig<"object">).proxyUrl.endpoint
+      )}`
+    );
 }

@@ -7,7 +7,7 @@ import cors from "cors";
 import morgan from "morgan";
 
 import { green, yellow } from "colors";
-import { getConfigUrlType, updateContext, watch } from "./helpers.ts";
+import { logRegisteredRoutes, updateContext, watch } from "./helpers.ts";
 import { routerFactory } from "./router.ts";
 import "dotenv";
 
@@ -46,6 +46,8 @@ context.config.watch && watch(() => {
   context.config.verbose && console.groupEnd();
 });
 
+// Middleware
+
 if (context.config.verbose) app.use(morgan("dev"));
 app.use(
   cors({
@@ -63,25 +65,7 @@ app.use(routerFactory(context));
 // Server
 
 app.listen(context.config.port, () => {
-  context.config.verbose &&
-    Array.isArray(context.config.proxyUrl) &&
-    console.info(
-      `Registered endpoints: ${yellow(
-        (context.config as unknown as IProxyConfig<"array">).proxyUrl
-          .map((proxyUrl) => proxyUrl.endpoint)
-          .join(", ")
-      )} `
-    );
-  context.config.verbose &&
-    typeof context.config.proxyUrl === "string" &&
-    console.info(`Registered endpoint: ${yellow("/")}`);
-  context.config.verbose &&
-    getConfigUrlType(context.config) === "object" &&
-    console.info(
-      `Registered endpoint: ${yellow(
-        (context.config as unknown as IProxyConfig<"object">).proxyUrl.endpoint
-      )}`
-    );
+  logRegisteredRoutes(context);
   console.info(
     `Proxy listening on ${yellow(`http://localhost:${context.config.port}`)}`
   );
